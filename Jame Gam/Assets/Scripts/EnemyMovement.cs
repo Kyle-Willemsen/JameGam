@@ -14,19 +14,20 @@ public class EnemyMovement : MonoBehaviour
 
     public Transform playerTarget;
     public bool hasMoved = true;
-
+    public bool canMove;
+    public float waitMoves;
 
 
     private void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
         movePoint.parent = null;
+        canMove = true;
     }
 
     private void Update()
-    {
-       // Debug.Log(playerTarget.position - transform.position);
 
+    {
         Vector3 direction = (playerTarget.position - transform.position);
         if (hasMoved)
         {
@@ -49,7 +50,7 @@ public class EnemyMovement : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, movePoint.position, enemySpeed * Time.deltaTime);
 
 
-            if (playerMovement.isMoving)
+            if (playerMovement.isMoving && canMove)
             {
                 switch (movementDirection)
                 {
@@ -110,7 +111,7 @@ public class EnemyMovement : MonoBehaviour
 
 
 
-            if (playerMovement.isMoving)
+            if (playerMovement.isMoving && canMove)
             {
                 switch (movementDirection)
                 {
@@ -168,7 +169,7 @@ public class EnemyMovement : MonoBehaviour
         else
         {
             transform.position = Vector3.MoveTowards(transform.position, movePoint.position, enemySpeed * Time.deltaTime);
-            if (playerMovement.isMoving)
+            if (playerMovement.isMoving && canMove)
             {
                 switch (movementDirection)
                 {
@@ -226,5 +227,19 @@ public class EnemyMovement : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void StopEnemy()
+    {
+        canMove = false;
+       //if (playerMovement.isMoving)
+       //{
+       //    waitMoves--;
+       //    if (waitMoves <= 0)
+       //    {
+       //        canMove = true;
+       //        waitMoves = 3;
+       //    }
+       //}
     }
 }
