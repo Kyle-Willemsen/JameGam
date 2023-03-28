@@ -221,9 +221,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1985180117864416343}
   - component: {fileID: 6120441583001648055}
+  - component: {fileID: 7903425419132353832}
   m_Layer: 5
   m_Name: Card_GroundSlam
-  m_TagString: Untagged
+  m_TagString: Slam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -264,6 +265,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be10f1e5d5f6aa34898841cf88a42945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selected: 0
+--- !u!114 &7903425419132353832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3663642656877607438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b434ee6853a7247846a01d2f632e87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placeInHand: {fileID: 6120441583001648055}
+  radius: 1.5
+  enemies:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &6331205249017458620
 GameObject:
   m_ObjectHideFlags: 0

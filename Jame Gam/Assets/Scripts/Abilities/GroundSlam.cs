@@ -2,18 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scream : MonoBehaviour
+public class GroundSlam : MonoBehaviour
 {
-    public float radius;
-    EnemyMovement enemyMovement;
-    public LayerMask enemies;
-    private GameObject player;
     public PlaceInHand placeInHand;
+    public float radius;
+    private GameObject player;
+    public LayerMask enemies;
 
 
     private void Start()
     {
-        
         player = GameObject.Find("Player");
     }
 
@@ -21,18 +19,19 @@ public class Scream : MonoBehaviour
     {
         if (placeInHand.selected)
         {
-            ScreamAttack();
+            Slam();
             Destroy(this.gameObject);
         }
     }
-    public void ScreamAttack()
+
+    public void Slam()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(player.transform.position, radius, enemies);
         foreach (Collider2D obj in colliders)
         {
-            if (obj.GetComponent<EnemyMovement>())
+            if (obj.GetComponent<EnemyStats>())
             {
-                obj.GetComponent<EnemyMovement>().StopEnemy();
+                obj.GetComponent<EnemyStats>().KillEnemy();
             }
             else
             {

@@ -9,8 +9,6 @@ public class EnemyMovement : MonoBehaviour
     public float enemySpeed;
     public Transform movePoint;
     public LayerMask barricade;
-    private int minDir = 1;
-    private int maxDir = 4;
 
     public Transform playerTarget;
     public bool hasMoved = true;

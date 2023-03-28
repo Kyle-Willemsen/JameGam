@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform movePoint;
     public LayerMask barricade;
     public bool isMoving;
-    private bool canMove;
+    public bool canMove;
 
 
     private void Start()

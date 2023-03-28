@@ -221,9 +221,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8523388638241528664}
   - component: {fileID: 712019577686075335}
+  - component: {fileID: 8265342953741106452}
   m_Layer: 5
   m_Name: Card_Swipe
-  m_TagString: Untagged
+  m_TagString: Swipe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -264,6 +265,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be10f1e5d5f6aa34898841cf88a42945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selected: 0
+--- !u!114 &8265342953741106452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6850592510875460865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad28e8e00e5c3cf46b155a3af4941a83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placeInHand: {fileID: 712019577686075335}
 --- !u!1 &7466159099108777252
 GameObject:
   m_ObjectHideFlags: 0
