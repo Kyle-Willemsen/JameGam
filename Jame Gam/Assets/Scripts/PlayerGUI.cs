@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class PlayerGUI : MonoBehaviour
 {
     public GameObject select;
-    private GameMan manager;
+    //private GameMan manager;
     private GameObject player;
     public float radius;
     public LayerMask enemies;
@@ -16,7 +16,7 @@ public class PlayerGUI : MonoBehaviour
 
     private void Start()
     {
-        manager = FindObjectOfType<GameMan>();
+        //manager = FindObjectOfType<GameMan>();
         attacked = false;
         player = GameObject.Find("Player");
     }
@@ -41,7 +41,11 @@ public class PlayerGUI : MonoBehaviour
             select.transform.localPosition = new Vector2(1f, 0f);
          }
 
-
+         if (Input.GetKeyDown(KeyCode.Space))
+         {
+            Attack();
+            attacked = true;
+         }
     }
 
     public void Attack()

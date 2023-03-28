@@ -41,20 +41,20 @@ public class PlaceInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         gameObject.transform.localScale = selectedSize;
         selected = true;
 
-        if (gameObject.tag == "Swipe")
-        {
-            manager.currentSwitch = 1;
-            Debug.Log("Swipe Selected");
-        }
-        if (gameObject.tag == "Slam")
-        {
-            manager.currentSwitch = 2;
-            Debug.Log("slam Selected");
-        }
-        if (gameObject.tag == "Scream")
-        {
-            manager.currentSwitch = 3;
-            Debug.Log("Scream Selected");
-        }
+       // if (gameObject.tag == "Swipe")
+       // {
+       //     manager.currentSwitch = 1;
+       //     Debug.Log("Swipe Selected");
+       // }
+       // if (gameObject.tag == "Slam")
+       // {
+       //     manager.currentSwitch = 2;
+       //     Debug.Log("slam Selected");
+       // }
+       // if (gameObject.tag == "Scream")
+       // {
+       //     manager.currentSwitch = 3;
+       //     Debug.Log("Scream Selected");
+       // }
     }
 }

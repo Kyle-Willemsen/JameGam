@@ -5,11 +5,13 @@ using UnityEngine;
 public class EnemyStats : MonoBehaviour
 {
     EnemyMovement enemyMovement;
+    PlayerStats playerStats;
 
     // Start is called before the first frame update
     void Start()
     {
         enemyMovement = FindObjectOfType<EnemyMovement>();
+        playerStats = FindObjectOfType<PlayerStats>();
     }
 
     // Update is called once per frame
@@ -18,9 +20,12 @@ public class EnemyStats : MonoBehaviour
         
     }
 
-    public void StopEnemy(float turns)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-
+        if (collision.gameObject.tag == "Player")
+        {
+            playerStats.GetHit();
+        }
     }
     public void KillEnemy()
     {
