@@ -43,6 +43,11 @@ public class PlayerMovement : MonoBehaviour
                         isMoving = true;
                         getAttacked = true;
                         currentSpawnCounter--;
+                        foreach (EnemyMovement i in manager.enemyMovements)
+                        {
+                            i.playerHasMoved = true;
+                        }
+                        isMoving = false;
                     }
                 }
 
@@ -55,6 +60,11 @@ public class PlayerMovement : MonoBehaviour
                         isMoving = true;
                         getAttacked = true;
                         currentSpawnCounter--;
+                        foreach (EnemyMovement i in manager.enemyMovements)
+                        {
+                            i.playerHasMoved = true;
+                        }
+                        isMoving = false;
                     }
                 }
             }

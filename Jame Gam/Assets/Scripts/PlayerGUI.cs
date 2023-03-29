@@ -7,7 +7,8 @@ public class PlayerGUI : MonoBehaviour
 {
     CardSelect cardSelect;
     public GameObject swipeVFX;
-
+    PlayerMovement playerMovement;
+    PlaceInHand placeInHand;
     public GameObject select;
     private GameObject player;
     public float radius;
@@ -20,11 +21,12 @@ public class PlayerGUI : MonoBehaviour
 
     private void Start()
     {
+        player = GameObject.Find("Player");
         cardSelect = FindObjectOfType<CardSelect>();
         manager = FindObjectOfType<GameMan>();
-
+        playerMovement = player.GetComponent<PlayerMovement>();
+        placeInHand = FindObjectOfType<PlaceInHand>();
         attacked = false;
-        player = GameObject.Find("Player");
     }
 
 
@@ -54,6 +56,7 @@ public class PlayerGUI : MonoBehaviour
             Invoke("ResetAttack", .5f);
             attacked = true;
             swipeVFX.SetActive(true);
+           // playerMovement.canMove = false;
          }
 
          if (Input.GetKeyDown(KeyCode.Escape))
@@ -64,10 +67,10 @@ public class PlayerGUI : MonoBehaviour
 
     void ResetAttack()
     {
-        PlaceInHand placeinHand = FindObjectOfType<PlaceInHand>();
-        placeinHand.selected = false;
+        placeInHand.selected = false;
         manager.selectionGUI.SetActive(false);
         attacked = false;
+       // playerMovement.canMove = true;
     }
     public void Attack()
     {

@@ -9,6 +9,8 @@ public class AnimEvent : MonoBehaviour
     PlayerMovement playerMovement;
     public LayerMask player;
     public float radius;
+
+
     private void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();

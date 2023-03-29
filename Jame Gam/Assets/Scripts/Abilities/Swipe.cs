@@ -19,7 +19,7 @@ public class Swipe : MonoBehaviour
     {
         if (placeInHand.selected)
         {
-            playerMovement.canMove = false;
+           playerMovement.canMove = false;
             manager.selectionGUI.SetActive(true);
             if (manager.playerGUI.attacked)
             {

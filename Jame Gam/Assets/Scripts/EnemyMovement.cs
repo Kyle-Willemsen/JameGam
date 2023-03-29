@@ -14,20 +14,24 @@ public class EnemyMovement : MonoBehaviour
     public bool hasMoved = true;
     public bool canMove;
     public float waitMoves;
+    public bool playerHasMoved;
+    [SerializeField]
+    Vector3 direction;
+    int timesTested;
 
 
     private void Start()
     {
-        playerTarget = GameObject.Find("Player");
+        playerTarget = GameObject.FindGameObjectWithTag("PlayerMovePoint");
         playerMovement = FindObjectOfType<PlayerMovement>();
         movePoint.parent = null;
         canMove = true;
+        playerHasMoved = false;
     }
 
-    private void Update()
-
+    public void Update()
     {
-        Vector3 direction = (playerTarget.transform.position - transform.position);
+        direction = (playerTarget.transform.position - transform.position);
         if (hasMoved)
         {
             if (direction.x > 0)
@@ -46,198 +50,103 @@ public class EnemyMovement : MonoBehaviour
             {
                 movementDirection = 4;
             }
-            transform.position = Vector3.MoveTowards(transform.position, movePoint.position, enemySpeed * Time.deltaTime);
 
-
-            if (playerMovement.isMoving && canMove)
+            Debug.Log(movementDirection);
+        }
+        if (hasMoved == false)
+        {
+            timesTested++;
+            if (timesTested == 2)
             {
-                switch (movementDirection)
-                {
-                    case 1:
-                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(1f, 0f, 0f), .2f, barricade))
-                        {
-                            movePoint.position += new Vector3(1f, 0f, 0f);
-                            playerMovement.isMoving = false;
-                        }
-                        else
-                        {
-                            movementDirection = Random.Range(3, 4);
-                            hasMoved = false;
-                        }
-                        break;
-
-                    case 2:
-                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(-1f, 0f, 0f), .2f, barricade))
-                        {
-                            movePoint.position += new Vector3(-1f, 0f, 0f);
-                            playerMovement.isMoving = false;
-                        }
-                        else
-                        {
-                            movementDirection = Random.Range(3, 4);
-                            hasMoved = false;
-                        }
-                        break;
-
-                    case 3:
-                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, 1f, 0f), .2f, barricade))
-                        {
-                            movePoint.position += new Vector3(0f, 1f, 0f);
-                            playerMovement.isMoving = false;
-                        }
-                        else
-                        {
-                            movementDirection = Random.Range(1, 2);
-                            hasMoved = false;
-                        }
-                        break;
-
-                    case 4:
-                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, -1f, 0f), .2f, barricade))
-                        {
-                            movePoint.position += new Vector3(0f, -1f, 0f);
-                            playerMovement.isMoving = false;
-                        }
-                        else
-                        {
-                            movementDirection = Random.Range(1, 2);
-                            hasMoved = false;
-                        }
-                        break;
-                }
-            }
-
-
-
-            if (playerMovement.isMoving && canMove)
-            {
-                switch (movementDirection)
-                {
-                    case 1:
-                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(1f, 0f, 0f), .2f, barricade))
-                        {
-                            movePoint.position += new Vector3(1f, 0f, 0f);
-                            playerMovement.isMoving = false;
-                        }
-                        else
-                        {
-                            movementDirection = Random.Range(3, 4);
-                        }
-                        break;
-
-                    case 2:
-                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(-1f, 0f, 0f), .2f, barricade))
-                        {
-                            movePoint.position += new Vector3(-1f, 0f, 0f);
-                            playerMovement.isMoving = false;
-                        }
-                        else
-                        {
-                            movementDirection = Random.Range(3, 4);
-                        }
-                        break;
-
-                    case 3:
-                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, 1f, 0f), .2f, barricade))
-                        {
-                            movePoint.position += new Vector3(0f, 1f, 0f);
-                            playerMovement.isMoving = false;
-                        }
-                        else
-                        {
-                            movementDirection = Random.Range(1, 2);
-                        }
-                        break;
-
-                    case 4:
-                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, -1f, 0f), .2f, barricade))
-                        {
-                            movePoint.position += new Vector3(0f, -1f, 0f);
-                            playerMovement.isMoving = false;
-                        }
-                        else
-                        {
-                            movementDirection = Random.Range(1, 2);
-                        }
-                        break;
-                }
+                hasMoved = true;
             }
         }
+        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, enemySpeed * Time.deltaTime);
 
-        else
+
+        if (playerHasMoved && canMove)
         {
-            transform.position = Vector3.MoveTowards(transform.position, movePoint.position, enemySpeed * Time.deltaTime);
-            if (playerMovement.isMoving && canMove)
+            switch (movementDirection)
             {
-                switch (movementDirection)
-                {
-                    case 1:
-                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(1f, 0f, 0f), .2f, barricade))
-                        {
-                            movePoint.position += new Vector3(1f, 0f, 0f);
-                            hasMoved = true;
-                            playerMovement.isMoving = false;
-                        }
-                        else
-                        {
-                            movementDirection = Random.Range(3, 4);
-                        }
-                        break;
+                case 1:
+                    if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(1f, 0f, 0f), .2f, barricade))
+                    {
+                        movePoint.position += new Vector3(1f, 0f, 0f);
 
-                    case 2:
-                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(-1f, 0f, 0f), .2f, barricade))
-                        {
-                            movePoint.position += new Vector3(-1f, 0f, 0f);
-                            playerMovement.isMoving = false;
-                            hasMoved = true;
-                        }
-                        else
-                        {
-                            movementDirection = Random.Range(3, 4);
-                        }
-                        break;
+                        hasMoved = true;
+                        playerHasMoved = false;
+                    }
+                    else
+                    {
+                        movementDirection = Random.Range(3, 4);
+                        hasMoved = false;
 
-                    case 3:
-                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, 1f, 0f), .2f, barricade))
-                        {
-                            movePoint.position += new Vector3(0f, 1f, 0f);
-                            playerMovement.isMoving = false;
-                            hasMoved = true;
-                        }
-                        else
-                        {
-                            movementDirection = Random.Range(1, 2);
-                        }
-                        break;
+                    }
+                    break;
 
-                    case 4:
-                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, -1f, 0f), .2f, barricade))
-                        {
-                            movePoint.position += new Vector3(0f, -1f, 0f);
-                            playerMovement.isMoving = false;
-                            hasMoved = true;
-                        }
-                        else
-                        {
-                            movementDirection = Random.Range(1, 2);
-                        }
-                        break;
-                }
+                case 2:
+                    if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(-1f, 0f, 0f), .2f, barricade))
+                    {
+                        movePoint.position += new Vector3(-1f, 0f, 0f);
+
+                        hasMoved = true;
+                        playerHasMoved = false;
+                    }
+                    else
+                    {
+                        movementDirection = Random.Range(3, 4);
+                        hasMoved = false;
+
+                    }
+                    break;
+
+                case 3:
+                    if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, 1f, 0f), .2f, barricade))
+                    {
+                        movePoint.position += new Vector3(0f, 1f, 0f);
+
+                        hasMoved = true;
+                        playerHasMoved = false;
+                    }
+                    else
+                    {
+                        movementDirection = Random.Range(1, 2);
+                        hasMoved = false;
+
+                    }
+                    break;
+
+                case 4:
+                    if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, -1f, 0f), .2f, barricade))
+                    {
+                        movePoint.position += new Vector3(0f, -1f, 0f);
+
+                        hasMoved = true;
+                        playerHasMoved = false;
+                    }
+                    else
+                    {
+                        movementDirection = Random.Range(1, 2);
+                        hasMoved = false;
+
+                    }
+                    break;
             }
+
         }
     }
 
     public void StopEnemy()
     {
         canMove = false;
-       //if (playerMovement.isMoving)
-       //{
-       //    waitMoves--;
-       //    if (waitMoves <= 0)
-       //    {
-       //        canMove = true;
-       //        waitMoves = 3;
-       //    }
-       //}
+        //if (playerMovement.isMoving)
+        //{
+        //    waitMoves--;
+        //    if (waitMoves <= 0)
+        //    {
+        //        canMove = true;
+        //        waitMoves = 3;
+        //    }
+        //}
     }
 }

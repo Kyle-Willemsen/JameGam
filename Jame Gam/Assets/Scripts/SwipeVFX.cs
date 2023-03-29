@@ -8,12 +8,12 @@ public class SwipeVFX : MonoBehaviour
 
     private void Update()
     {
-        anim.SetBool("Swipe", true);
+        anim.SetBool("Chomp", true);
     }
 
     public void End()
     {
-        anim.SetBool("Swipe", false);
+        anim.SetBool("Chomp", false);
         Invoke("Off", 0.2f);
     }
     public void Off()

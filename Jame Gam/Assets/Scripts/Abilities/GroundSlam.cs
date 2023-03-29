@@ -5,7 +5,9 @@ using UnityEngine;
 public class GroundSlam : MonoBehaviour
 {
     public PlaceInHand placeInHand;
+    Animator anim;
     CardSelect cardSelect;
+   // PlayerMovement playerMovement;
 
     public float radius;
     private GameObject player;
@@ -16,6 +18,8 @@ public class GroundSlam : MonoBehaviour
     {
         player = GameObject.Find("Player");
         cardSelect = FindObjectOfType<CardSelect>();
+        anim = player.GetComponent<Animator>();
+        //playerMovement = player.GetComponent<PlayerMovement>();
     }
 
     private void Update()
@@ -23,6 +27,8 @@ public class GroundSlam : MonoBehaviour
         if (placeInHand.selected)
         {
             Slam();
+            //playerMovement.canMove = false;
+            anim.SetBool("Slam", true);
             cardSelect.DeckHand.RemoveAt(0);
             Destroy(this.gameObject);
         }

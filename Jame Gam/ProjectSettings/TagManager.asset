@@ -8,6 +8,7 @@ TagManager:
   - Swipe
   - Slam
   - Scream
+  - PlayerMovePoint
   layers:
   - Default
   - TransparentFX
