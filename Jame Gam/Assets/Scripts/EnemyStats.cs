@@ -49,14 +49,14 @@ public class EnemyStats : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            enemyMovement.canMove = true;
-            anim.SetBool("Charge", false);
-        }
-    }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.tag == "Player")
+    //    {
+    //        enemyMovement.canMove = true;
+    //        anim.SetBool("Charge", false);
+    //    }
+    //}
 
 
     public void KillEnemy()

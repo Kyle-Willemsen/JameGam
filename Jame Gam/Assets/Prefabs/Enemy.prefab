@@ -9,11 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5061712184905469167}
-  - component: {fileID: 5061712184905469161}
   - component: {fileID: 5061712184905469160}
   - component: {fileID: 5061712184905469163}
-  - component: {fileID: 5061712184905469164}
   - component: {fileID: 5061712184905469165}
+  - component: {fileID: 7200273390611850643}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -39,22 +38,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &5061712184905469161
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5061712184905469162}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!50 &5061712184905469160
 Rigidbody2D:
   serializedVersion: 4
@@ -97,27 +80,9 @@ MonoBehaviour:
   playerTarget: {fileID: 0}
   hasMoved: 1
   canMove: 0
-  waitMoves: 0
+  waitMoves: 3
   playerHasMoved: 0
   direction: {x: 0, y: 0, z: 0}
---- !u!114 &5061712184905469164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5061712184905469162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 041b490b1ab65764d93b3e86b7784e2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loot:
-  - {fileID: 3103083070497664357, guid: a9c560a330b4c06489b9a63c9d0cd090, type: 3}
-  - {fileID: 4036981333891566641, guid: 32c940c2d696c554985b9b7a188d664f, type: 3}
-  - {fileID: 2629844512590731158, guid: 42d52708db035874590ce63d0de75237, type: 3}
-  lootParent: {fileID: 0}
-  canBeAttacked: 0
 --- !u!61 &5061712184905469165
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144,6 +109,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 3}
   m_EdgeRadius: 0
+--- !u!114 &7200273390611850643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5061712184905469162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 041b490b1ab65764d93b3e86b7784e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loot:
+  - {fileID: 3103083070497664357, guid: a9c560a330b4c06489b9a63c9d0cd090, type: 3}
+  - {fileID: 4036981333891566641, guid: 32c940c2d696c554985b9b7a188d664f, type: 3}
+  - {fileID: 2629844512590731158, guid: 42d52708db035874590ce63d0de75237, type: 3}
+  lootParent: {fileID: 5061712184905469167}
+  canBeAttacked: 0
 --- !u!1 &5061712185117182002
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,7 +392,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5061712185581723937}
   - component: {fileID: 5061712185581723942}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Light 2D (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -904,7 +887,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5061712185647416089}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: movePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1107,7 +1090,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5061712186026640869}
   - component: {fileID: 5061712186026640794}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1771,7 +1754,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5061712186441467990}
   - component: {fileID: 5061712186441467991}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1856,6 +1839,8 @@ GameObject:
   - component: {fileID: 5061712186770290126}
   - component: {fileID: 5061712186770290127}
   - component: {fileID: 1951562902}
+  - component: {fileID: 322882934025765785}
+  - component: {fileID: 1625794600}
   m_Layer: 7
   m_Name: Character
   m_TagString: Untagged
@@ -1917,8 +1902,42 @@ MonoBehaviour:
   anim: {fileID: 5061712186770290127}
   player:
     serializedVersion: 2
-    m_Bits: 256
-  radius: 1
+    m_Bits: 0
+  radius: 0
+--- !u!58 &322882934025765785
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5061712186770290121}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2
+--- !u!114 &1625794600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5061712186770290121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 041b490b1ab65764d93b3e86b7784e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loot:
+  - {fileID: 3103083070497664357, guid: a9c560a330b4c06489b9a63c9d0cd090, type: 3}
+  - {fileID: 4036981333891566641, guid: 32c940c2d696c554985b9b7a188d664f, type: 3}
+  - {fileID: 2629844512590731158, guid: 42d52708db035874590ce63d0de75237, type: 3}
+  lootParent: {fileID: 0}
+  canBeAttacked: 0
 --- !u!1 &5061712186795155774
 GameObject:
   m_ObjectHideFlags: 0

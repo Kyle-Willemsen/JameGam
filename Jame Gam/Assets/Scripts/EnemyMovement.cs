@@ -19,6 +19,8 @@ public class EnemyMovement : MonoBehaviour
     Vector3 direction;
     int timesTested;
 
+    private bool stunned;
+
 
     private void Start()
     {
@@ -50,8 +52,6 @@ public class EnemyMovement : MonoBehaviour
             {
                 movementDirection = 4;
             }
-
-            Debug.Log(movementDirection);
         }
         if (hasMoved == false)
         {
@@ -134,19 +134,24 @@ public class EnemyMovement : MonoBehaviour
             }
 
         }
+        if (stunned)
+        {
+            canMove = false;
+            if (playerMovement.canMove == false)
+            {
+                waitMoves--;
+                if (waitMoves <= 0)
+                {
+                    canMove = true;
+                    waitMoves = 3;
+                }
+            }
+        }
     }
 
     public void StopEnemy()
     {
-        canMove = false;
-        //if (playerMovement.isMoving)
-        //{
-        //    waitMoves--;
-        //    if (waitMoves <= 0)
-        //    {
-        //        canMove = true;
-        //        waitMoves = 3;
-        //    }
-        //}
+        Debug.Log("Stunned");
+        stunned = true;
     }
 }

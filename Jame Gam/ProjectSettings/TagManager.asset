@@ -9,6 +9,7 @@ TagManager:
   - Slam
   - Scream
   - PlayerMovePoint
+  - Enemy
   layers:
   - Default
   - TransparentFX

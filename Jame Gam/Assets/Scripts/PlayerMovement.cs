@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     public float enemySpawnCounter;
     public float currentSpawnCounter;
 
+    public float totalCounter;
+    public TextMeshProUGUI stepCounter;
 
     private void Start()
     {
@@ -29,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        stepCounter.text = "" + totalCounter;
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
         if (canMove)
         {
@@ -43,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
                         isMoving = true;
                         getAttacked = true;
                         currentSpawnCounter--;
+                        totalCounter--;
                         foreach (EnemyMovement i in manager.enemyMovements)
                         {
                             i.playerHasMoved = true;
@@ -60,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
                         isMoving = true;
                         getAttacked = true;
                         currentSpawnCounter--;
+                        totalCounter--;
                         foreach (EnemyMovement i in manager.enemyMovements)
                         {
                             i.playerHasMoved = true;

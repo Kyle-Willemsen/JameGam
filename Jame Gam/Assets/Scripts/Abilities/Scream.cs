@@ -28,9 +28,10 @@ public class Scream : MonoBehaviour
         if (placeInHand.selected)
         {
             ScreamAttack();
+
             //playerMovement.canMove = false;
             anim.SetBool("Scream", true);
-            cardSelect.DeckHand.RemoveAt(0);
+            //cardSelect.DeckHand.RemoveAt(0);
             Destroy(this.gameObject);
         }
     }
@@ -51,5 +52,11 @@ public class Scream : MonoBehaviour
                 return;
             }
         }
+
+        //private void OnDrawGizmos()
+        //{
+        //    Gizmos.color = Color.red;
+        //    Gizmos.DrawSphere(player.transform.position, radius);
+        //}
     }
 }

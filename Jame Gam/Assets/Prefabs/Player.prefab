@@ -1152,8 +1152,9 @@ MonoBehaviour:
   isMoving: 0
   canMove: 0
   getAttacked: 0
-  enemySpawnCounter: 5
+  enemySpawnCounter: 8
   currentSpawnCounter: 0
+  totalCounter: 100
 --- !u!114 &1997828256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1168,7 +1169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLives: 3
   currentLives: 0
-  lifeImage: {fileID: 0}
 --- !u!95 &1883645956
 Animator:
   serializedVersion: 4
@@ -1200,7 +1200,7 @@ GameObject:
   - component: {fileID: 5979776064480354047}
   m_Layer: 0
   m_Name: movePoint
-  m_TagString: Untagged
+  m_TagString: PlayerMovePoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

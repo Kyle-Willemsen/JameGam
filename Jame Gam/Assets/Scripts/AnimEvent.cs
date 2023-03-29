@@ -26,6 +26,7 @@ public class AnimEvent : MonoBehaviour
                 obj.GetComponent<PlayerStats>().GetHit();
             }
         }
+
     }
 
     private void OnDrawGizmos()

@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerStats : MonoBehaviour
 {
     public float maxLives;
     public float currentLives;
-    public GameObject lifeImage;
+    //public GameObject lifeImage;
     //PlayerMovement playerMovement;
     Animator anim;
     //public List<GameObject> lives = new List<GameObject>();
+    private GameObject loseScreen;
+    GameMan manager;
+    public TextMeshProUGUI liveLives;
 
     private void Start()
     {
+        manager = GameObject.Find("GameManager").GetComponent<GameMan>();
+        loseScreen = manager.loseScreen;
         anim = GetComponent<Animator>();
         currentLives = maxLives;
         //playerMovement = GetComponent<PlayerMovement>();
@@ -20,9 +26,11 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
+        liveLives.text = "" + currentLives;
         if (currentLives <= 0)
         {
             Time.timeScale = 0;
+            loseScreen.SetActive(true);
         }
 
         //if (curr)
