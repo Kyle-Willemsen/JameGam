@@ -10,7 +10,7 @@ public class EnemyMovement : MonoBehaviour
     public Transform movePoint;
     public LayerMask barricade;
 
-    public Transform playerTarget;
+    public GameObject playerTarget;
     public bool hasMoved = true;
     public bool canMove;
     public float waitMoves;
@@ -18,6 +18,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
+        playerTarget = GameObject.Find("Player");
         playerMovement = FindObjectOfType<PlayerMovement>();
         movePoint.parent = null;
         canMove = true;
@@ -26,7 +27,7 @@ public class EnemyMovement : MonoBehaviour
     private void Update()
 
     {
-        Vector3 direction = (playerTarget.position - transform.position);
+        Vector3 direction = (playerTarget.transform.position - transform.position);
         if (hasMoved)
         {
             if (direction.x > 0)
@@ -57,7 +58,6 @@ public class EnemyMovement : MonoBehaviour
                         {
                             movePoint.position += new Vector3(1f, 0f, 0f);
                             playerMovement.isMoving = false;
-
                         }
                         else
                         {
@@ -175,8 +175,8 @@ public class EnemyMovement : MonoBehaviour
                         if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(1f, 0f, 0f), .2f, barricade))
                         {
                             movePoint.position += new Vector3(1f, 0f, 0f);
-                            playerMovement.isMoving = false;
                             hasMoved = true;
+                            playerMovement.isMoving = false;
                         }
                         else
                         {

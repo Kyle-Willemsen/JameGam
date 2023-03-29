@@ -7,8 +7,6 @@ public class Swipe : MonoBehaviour
 {
     public PlaceInHand placeInHand;
     PlayerMovement playerMovement;
-    //private GameObject selectionGUI;
-    //PlayerGUI playerGUI;
     private GameMan manager;
 
 
@@ -16,8 +14,6 @@ public class Swipe : MonoBehaviour
     {
         manager = FindObjectOfType<GameMan>();
         playerMovement = FindObjectOfType<PlayerMovement>();
-        //selectionGUI = GameObject.Find("SelectionGUI");
-        //playerGUI = FindObjectOfType<PlayerGUI>();
     }
     private void Update()
     {
@@ -25,12 +21,17 @@ public class Swipe : MonoBehaviour
         {
             playerMovement.canMove = false;
             manager.selectionGUI.SetActive(true);
-            //manager.attackButtonCD.interactable = true;
             if (manager.playerGUI.attacked)
             {
                 Destroy(this.gameObject);
                 manager.selectionGUI.SetActive(false);
             }
         }
+    }
+
+    void AttackCanceled()
+    {
+        placeInHand.selected = false;
+        manager.selectionGUI.SetActive(false);
     }
 }

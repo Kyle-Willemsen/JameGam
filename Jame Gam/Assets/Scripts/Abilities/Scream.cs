@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class Scream : MonoBehaviour
 {
-    public float radius;
-    EnemyMovement enemyMovement;
-    public LayerMask enemies;
     private GameObject player;
     public PlaceInHand placeInHand;
+    private CardSelect cardSelect;
+
+    public float radius;
+    public LayerMask enemies;
+    //EnemyMovement enemyMovement;
 
 
     private void Start()
     {
-        
+        cardSelect = FindObjectOfType<CardSelect>();
         player = GameObject.Find("Player");
     }
 
@@ -22,6 +24,7 @@ public class Scream : MonoBehaviour
         if (placeInHand.selected)
         {
             ScreamAttack();
+            cardSelect.DeckHand.RemoveAt(0);
             Destroy(this.gameObject);
         }
     }

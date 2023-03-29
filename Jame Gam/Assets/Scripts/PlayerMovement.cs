@@ -6,16 +6,25 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    GameMan manager;
+
     public float moveSpeed;
     public Transform movePoint;
     public LayerMask barricade;
     public bool isMoving;
     public bool canMove;
+    public bool getAttacked;
+
+    public float enemySpawnCounter;
+    public float currentSpawnCounter;
 
 
     private void Start()
     {
+        manager = FindObjectOfType<GameMan>();
         movePoint.parent = null;
+
+        currentSpawnCounter = enemySpawnCounter;
     }
 
     private void Update()
@@ -32,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
                     {
                         movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
                         isMoving = true;
+                        getAttacked = true;
+                        currentSpawnCounter--;
                     }
                 }
 
@@ -42,8 +53,17 @@ public class PlayerMovement : MonoBehaviour
                     {
                         movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
                         isMoving = true;
+                        getAttacked = true;
+                        currentSpawnCounter--;
                     }
                 }
+            }
+
+            if (currentSpawnCounter <= 0)
+            {
+                manager.SpawnEnemy();
+                manager.randomSpawnPoint = Random.Range(0, 6);
+                currentSpawnCounter = enemySpawnCounter; 
             }
         }
 

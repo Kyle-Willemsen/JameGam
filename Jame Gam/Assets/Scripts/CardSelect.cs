@@ -7,8 +7,4 @@ public class CardSelect : MonoBehaviour
 {
     public List <GameObject> DeckHand = new List<GameObject>();
 
-
-
-
-
 }

@@ -22,7 +22,6 @@ public class CardCollect : MonoBehaviour
         {
             cardSelect.DeckHand.Add(cardPrefab);
             Instantiate(cardPrefab, transform.position, Quaternion.identity);
-            //cardPrefab.transform.SetParent(hand);
             Destroy(this.gameObject);
         }
     }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class GroundSlam : MonoBehaviour
 {
     public PlaceInHand placeInHand;
+    CardSelect cardSelect;
+
     public float radius;
     private GameObject player;
     public LayerMask enemies;
@@ -13,6 +15,7 @@ public class GroundSlam : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("Player");
+        cardSelect = FindObjectOfType<CardSelect>();
     }
 
     private void Update()
@@ -20,6 +23,7 @@ public class GroundSlam : MonoBehaviour
         if (placeInHand.selected)
         {
             Slam();
+            cardSelect.DeckHand.RemoveAt(0);
             Destroy(this.gameObject);
         }
     }
