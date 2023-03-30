@@ -151,7 +151,7 @@ RectTransform:
   m_GameObject: {fileID: 182050044}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 150}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4343555, y: 0.4343555, z: 0.4343555}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1552875325}
@@ -159,7 +159,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -121.3}
+  m_AnchoredPosition: {x: 0, y: -26.2}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &182050046
@@ -284,7 +284,7 @@ RectTransform:
   m_GameObject: {fileID: 376797064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 150}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4343555, y: 0.4343555, z: 0.4343555}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1552875325}
@@ -292,7 +292,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -265}
+  m_AnchoredPosition: {x: 0, y: -93.29999}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &376797066
@@ -404,7 +404,7 @@ RectTransform:
   m_GameObject: {fileID: 671972379}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.356727, y: 4.356727, z: 4.356727}
+  m_LocalScale: {x: 1.8923683, y: 1.8923683, z: 1.8923683}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1552875325}
@@ -412,8 +412,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 79}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 6.1568, y: 79}
+  m_SizeDelta: {x: 212.3136, y: 53.0784}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &671972381
 MonoBehaviour:
@@ -435,7 +435,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Monster
+  m_text: mr Monster
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4d7be566dc36a6341ae47aca8b1b3c28, type: 2}
   m_sharedMaterial: {fileID: -4432747857219165121, guid: 4d7be566dc36a6341ae47aca8b1b3c28, type: 2}
@@ -667,7 +667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}

@@ -7,7 +7,7 @@ public class Home : MonoBehaviour
 {
     public GameObject pauseScreen;
     Animator anim;
-
+    AudioManager audioManager;
     bool paused;
     public bool inGame = false;
 
@@ -42,8 +42,10 @@ public class Home : MonoBehaviour
 
     public void Play()
     {
+        //audioManager.Play("UI Play");
         SceneManager.LoadScene(1);
         inGame = true;
+
     }
 
     public void Exit()

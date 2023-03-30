@@ -7,10 +7,11 @@ public class EnemyStats : MonoBehaviour
     public List<GameObject> loot = new List<GameObject>();
     EnemyMovement enemyMovement;
     PlayerStats playerStats;
-    private GameObject lootParent;
+    [HideInInspector] public GameObject lootParent;
     public AnimEvent animEvent;
+    AudioManager audioManager;
     
-    private int randomCard;
+    public int randomCard;
     private Animator anim;
     PlayerMovement playerMovement;
 
@@ -23,6 +24,7 @@ public class EnemyStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
         lootParent = GameObject.Find("LootDrops");
         enemyMovement = FindObjectOfType<EnemyMovement>();
         playerStats = FindObjectOfType<PlayerStats>();
@@ -67,6 +69,7 @@ public class EnemyStats : MonoBehaviour
         {
             if (obj.GetComponent<PlayerStats>())
             {
+                audioManager.Play("Charge");
                 enemyMovement.canMove = false;
                 anim.SetBool("Charge", true);
                 if (playerMovement.getAttacked && canAttack)
@@ -126,11 +129,14 @@ public class EnemyStats : MonoBehaviour
 
     public void KillEnemy()
     {
+        audioManager.Play("Enemy Death");
         randomCard = Random.Range(0, 3);
         Debug.Log("dead");
         Instantiate(loot[randomCard], transform.position, Quaternion.identity, lootParent.transform);
         Destroy(this.gameObject);
     }
+
+
 
     public void StopEnemy()
     {

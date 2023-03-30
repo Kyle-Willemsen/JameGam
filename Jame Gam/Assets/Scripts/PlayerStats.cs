@@ -14,9 +14,11 @@ public class PlayerStats : MonoBehaviour
     private GameObject loseScreen;
     GameMan manager;
     private TextMeshProUGUI liveLives;
+    AudioManager audioManager;
 
     private void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
         liveLives = GameObject.Find("remaining").GetComponent<TextMeshProUGUI>();
         manager = GameObject.Find("GameManager").GetComponent<GameMan>();
         loseScreen = manager.loseScreen;
@@ -30,15 +32,20 @@ public class PlayerStats : MonoBehaviour
         liveLives.text = "" + currentLives;
         if (currentLives <= 0)
         {
+            // audioManager.Play("Player Death");
             Time.timeScale = 0;
             loseScreen.SetActive(true);
+
         }
 
         //if (curr)
     }
+
+
     public void GetHit()
     {
         currentLives--;
+        Shake();
         //lives.Remove(lifeImage);
     }
 
@@ -52,5 +59,10 @@ public class PlayerStats : MonoBehaviour
     {
         anim.SetBool("Slam", false);
         //playerMovement.canMove = true;
+    }
+
+    public void Shake()
+    {
+        CamShake.Instance.StartShake(2f, .15f);
     }
 }

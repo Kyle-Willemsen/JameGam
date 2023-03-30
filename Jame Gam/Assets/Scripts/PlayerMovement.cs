@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.ReorderableList;
+//using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -21,11 +21,12 @@ public class PlayerMovement : MonoBehaviour
 
     public float totalCounter;
     private TextMeshProUGUI stepCounter;
-
-    EnemyStats enemyStats;
+    AudioManager audioManager;
+   [HideInInspector] public EnemyStats enemyStats;
 
     private void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
         stepCounter = GameObject.Find("remainingSteps").GetComponent<TextMeshProUGUI>();
         manager = FindObjectOfType<GameMan>();
         movePoint.parent = null;
@@ -46,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
                     canMove = false;
                     if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, barricade))
                     {
+                        audioManager.Play("Footsteps");
                         movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
                         isMoving = true;
                         getAttacked = true;
@@ -65,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
                     canMove = false;
                     if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), .2f, barricade))
                     {
+                        audioManager.Play("Footsteps");
                         movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
                         isMoving = true;
                         getAttacked = true;

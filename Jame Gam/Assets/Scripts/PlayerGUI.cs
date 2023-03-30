@@ -16,11 +16,12 @@ public class PlayerGUI : MonoBehaviour
     public bool attacked;
     GameMan manager;
     //public Animator swipeAnim;
-
+    AudioManager audioManager;
 
 
     private void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
         player = GameObject.Find("Player");
         cardSelect = FindObjectOfType<CardSelect>();
         manager = FindObjectOfType<GameMan>();
@@ -53,6 +54,8 @@ public class PlayerGUI : MonoBehaviour
          if (Input.GetKeyDown(KeyCode.Space))
          {
             Attack();
+            audioManager.Play("Swipe");
+            Shake();
             Invoke("ResetAttack", .5f);
             attacked = true;
             swipeVFX.SetActive(true);
@@ -65,6 +68,10 @@ public class PlayerGUI : MonoBehaviour
          }
     }
 
+    public void Shake()
+    {
+        CamShake.Instance.StartShake(1f, .1f);
+    }
     void ResetAttack()
     {
         placeInHand.selected = false;

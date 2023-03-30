@@ -50,4 +50,6 @@ public class AnimEvent : MonoBehaviour
         //playerMovement.getAttacked = false;
         //Debug.Log("Anim Ended");
     }
+
+
 }

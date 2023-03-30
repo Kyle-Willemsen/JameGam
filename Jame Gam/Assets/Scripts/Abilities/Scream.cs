@@ -8,7 +8,7 @@ public class Scream : MonoBehaviour
     public PlaceInHand placeInHand;
     private CardSelect cardSelect;
     //PlayerMovement playerMovement;
-
+    AudioManager audioManager;
     public float radius;
     public LayerMask enemies;
     Animator anim;
@@ -17,6 +17,7 @@ public class Scream : MonoBehaviour
 
     private void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
         player = GameObject.Find("Player");
         //playerMovement = player.GetComponent<PlayerMovement>();
         anim = GameObject.Find("Player").GetComponent<Animator>();
@@ -28,7 +29,7 @@ public class Scream : MonoBehaviour
         if (placeInHand.selected)
         {
             ScreamAttack();
-
+            audioManager.Play("Scream");
             //playerMovement.canMove = false;
             anim.SetBool("Scream", true);
             //cardSelect.DeckHand.RemoveAt(0);

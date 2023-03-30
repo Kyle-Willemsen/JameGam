@@ -129,7 +129,6 @@ MonoBehaviour:
   - {fileID: 3103083070497664357, guid: a9c560a330b4c06489b9a63c9d0cd090, type: 3}
   - {fileID: 4036981333891566641, guid: 32c940c2d696c554985b9b7a188d664f, type: 3}
   - {fileID: 2629844512590731158, guid: 42d52708db035874590ce63d0de75237, type: 3}
-  lootParent: {fileID: 5061712184905469167}
   animEvent: {fileID: 1951562902}
   canAttack: 0
   stunned: 0

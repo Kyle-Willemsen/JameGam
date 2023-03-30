@@ -12,10 +12,11 @@ public class GroundSlam : MonoBehaviour
     public float radius;
     private GameObject player;
     public LayerMask enemies;
-
+    AudioManager audioManager;
 
     private void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
         player = GameObject.Find("Player");
         cardSelect = FindObjectOfType<CardSelect>();
         anim = player.GetComponent<Animator>();
@@ -27,6 +28,7 @@ public class GroundSlam : MonoBehaviour
         if (placeInHand.selected)
         {
             Slam();
+            audioManager.Play("Slam");
             //playerMovement.canMove = false;
             anim.SetBool("Slam", true);
             //cardSelect.DeckHand.RemoveAt(0);
