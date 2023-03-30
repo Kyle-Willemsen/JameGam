@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5061712184905469163}
   - component: {fileID: 5061712184905469165}
   - component: {fileID: 7200273390611850643}
+  - component: {fileID: 895359190}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -71,13 +72,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b484d0744527dc04993d71ed3a1bbf83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyStats: {fileID: 7200273390611850643}
   movementDirection: 0
   enemySpeed: 5
   movePoint: {fileID: 5061712185647416089}
   barricade:
     serializedVersion: 2
     m_Bits: 64
-  playerTarget: {fileID: 0}
   hasMoved: 1
   canMove: 0
   waitMoves: 3
@@ -90,7 +91,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5061712184905469162}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -125,8 +126,34 @@ MonoBehaviour:
   - {fileID: 3103083070497664357, guid: a9c560a330b4c06489b9a63c9d0cd090, type: 3}
   - {fileID: 4036981333891566641, guid: 32c940c2d696c554985b9b7a188d664f, type: 3}
   - {fileID: 2629844512590731158, guid: 42d52708db035874590ce63d0de75237, type: 3}
+  - {fileID: 3103083070497664357, guid: a9c560a330b4c06489b9a63c9d0cd090, type: 3}
+  - {fileID: 4036981333891566641, guid: 32c940c2d696c554985b9b7a188d664f, type: 3}
+  - {fileID: 2629844512590731158, guid: 42d52708db035874590ce63d0de75237, type: 3}
   lootParent: {fileID: 5061712184905469167}
-  canBeAttacked: 0
+  animEvent: {fileID: 1951562902}
+  canAttack: 0
+  stunned: 0
+  move: 0
+  radius: 1.5
+  player:
+    serializedVersion: 2
+    m_Bits: 256
+--- !u!58 &895359190
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5061712184905469162}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.4
 --- !u!1 &5061712185117182002
 GameObject:
   m_ObjectHideFlags: 0
@@ -1840,7 +1867,7 @@ GameObject:
   - component: {fileID: 5061712186770290127}
   - component: {fileID: 1951562902}
   - component: {fileID: 322882934025765785}
-  - component: {fileID: 1625794600}
+  - component: {fileID: 234472439}
   m_Layer: 7
   m_Name: Character
   m_TagString: Untagged
@@ -1902,8 +1929,8 @@ MonoBehaviour:
   anim: {fileID: 5061712186770290127}
   player:
     serializedVersion: 2
-    m_Bits: 0
-  radius: 0
+    m_Bits: 256
+  radius: 1.5
 --- !u!58 &322882934025765785
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1911,7 +1938,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5061712186770290121}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1920,24 +1947,30 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2
---- !u!114 &1625794600
+--- !u!114 &234472439
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5061712186770290121}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 041b490b1ab65764d93b3e86b7784e2a, type: 3}
+  m_Script: {fileID: 11500000, guid: b484d0744527dc04993d71ed3a1bbf83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loot:
-  - {fileID: 3103083070497664357, guid: a9c560a330b4c06489b9a63c9d0cd090, type: 3}
-  - {fileID: 4036981333891566641, guid: 32c940c2d696c554985b9b7a188d664f, type: 3}
-  - {fileID: 2629844512590731158, guid: 42d52708db035874590ce63d0de75237, type: 3}
-  lootParent: {fileID: 0}
-  canBeAttacked: 0
+  enemyStats: {fileID: 7200273390611850643}
+  movementDirection: 0
+  enemySpeed: 5
+  movePoint: {fileID: 5061712185647416089}
+  barricade:
+    serializedVersion: 2
+    m_Bits: 64
+  hasMoved: 1
+  canMove: 0
+  waitMoves: 3
+  playerHasMoved: 0
+  direction: {x: 0, y: 0, z: 0}
 --- !u!1 &5061712186795155774
 GameObject:
   m_ObjectHideFlags: 0

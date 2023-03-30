@@ -7,47 +7,107 @@ public class EnemyStats : MonoBehaviour
     public List<GameObject> loot = new List<GameObject>();
     EnemyMovement enemyMovement;
     PlayerStats playerStats;
-    public Transform lootParent;
+    private GameObject lootParent;
+    public AnimEvent animEvent;
     
     private int randomCard;
     private Animator anim;
     PlayerMovement playerMovement;
-    public bool canBeAttacked;
 
+    public bool canAttack;
+    public bool stunned;
+    public bool move;
+
+    public float radius;
+    public LayerMask player;
     // Start is called before the first frame update
     void Start()
     {
+        lootParent = GameObject.Find("LootDrops");
         enemyMovement = FindObjectOfType<EnemyMovement>();
         playerStats = FindObjectOfType<PlayerStats>();
         anim = GetComponentInChildren<Animator>();
         playerMovement = FindObjectOfType<PlayerMovement>();
 
-        randomCard = Random.Range(0, 3);
+
+        canAttack = true;
+        move = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
+        //Debug.Log(stunned);
+        if (stunned == true)
         {
-            enemyMovement.canMove = false;
-            anim.SetBool("Charge", true);
-            if (playerMovement.getAttacked && collision.gameObject.tag == "Player")
+            canAttack = false;
+            //enemyMovement.canMove = false;
+            if (enemyMovement.canMove == false && playerMovement.getAttacked && move)
             {
-                anim.SetBool("Charge", false);
-                anim.SetBool("Attack", true);
-                //playerStats.GetHit();
-                //playerMovement.getAttacked = false;
-                //enemyMovement.canMove = true;
+                Debug.Log(enemyMovement.waitMoves);
+                enemyMovement.waitMoves--;
+                move = false;
+
+                if (enemyMovement.waitMoves <= 0)
+                {
+                    enemyMovement.canMove = true;
+                    move = true;
+                    canAttack = true;
+                    enemyMovement.waitMoves = 3;
+                    stunned = false;
+                    //enemyMovement.waitMoves = 100;
+                }
+            }
+        }
+
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, player);
+        foreach (Collider2D obj in colliders)
+        {
+            if (obj.GetComponent<PlayerStats>())
+            {
+                enemyMovement.canMove = false;
+                anim.SetBool("Charge", true);
+                if (playerMovement.getAttacked && canAttack)
+                {
+                    //playerMovement.getAttacked = false;
+                    //Debug.Log("Attack");
+                    anim.SetBool("Charge", false);
+                    anim.SetBool("Attack", true);
+                    //playerStats.GetHit();
+                    //playerMovement.getAttacked = false;
+                    //enemyMovement.canMove = true;
+                }
             }
 
+            else
+            {
+                anim.SetBool("Charge", false);
+                anim.SetBool("Attack", false);
+            }
         }
     }
+
+    // private void OnTriggerStay2D(Collider2D collision)
+    // {
+    //     if (collision.gameObject.tag == "Player")
+    //     {
+    //         //Debug.Log("Player Detected");
+    //         
+    //         if (playerMovement.getAttacked && canAttack)
+    //         {
+    //             //playerMovement.getAttacked = false;
+    //             //Debug.Log("Attack");
+    //             anim.SetBool("Charge", false);
+    //             anim.SetBool("Attack", true);
+    //             //playerStats.GetHit();
+    //             //playerMovement.getAttacked = false;
+    //             //enemyMovement.canMove = true;
+    //         }
+    //
+    //     }
+    // }
 
     //private void OnTriggerExit2D(Collider2D collision)
     //{
@@ -58,10 +118,23 @@ public class EnemyStats : MonoBehaviour
     //    }
     //}
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, radius);
+    }
 
     public void KillEnemy()
     {
-        Instantiate(loot[randomCard], transform.position, Quaternion.identity, lootParent);
+        randomCard = Random.Range(0, 3);
+        Debug.Log("dead");
+        Instantiate(loot[randomCard], transform.position, Quaternion.identity, lootParent.transform);
         Destroy(this.gameObject);
+    }
+
+    public void StopEnemy()
+    {
+        stunned = true;
+        //Debug.Log(stunned);
     }
 }

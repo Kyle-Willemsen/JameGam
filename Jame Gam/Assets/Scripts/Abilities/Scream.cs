@@ -43,20 +43,21 @@ public class Scream : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(player.transform.position, radius, enemies);
         foreach (Collider2D obj in colliders)
         {
-            if (obj.GetComponent<EnemyMovement>())
+            if (obj.GetComponent<EnemyStats>())
             {
-                obj.GetComponent<EnemyMovement>().StopEnemy();
+                obj.GetComponent<EnemyStats>().StopEnemy();
             }
-            else
-            {
-                return;
-            }
+           // else
+           // {
+           //     return;
+           // }
         }
+        
+    }
 
-        //private void OnDrawGizmos()
-        //{
-        //    Gizmos.color = Color.red;
-        //    Gizmos.DrawSphere(player.transform.position, radius);
-        //}
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(player.transform.position, radius);
     }
 }

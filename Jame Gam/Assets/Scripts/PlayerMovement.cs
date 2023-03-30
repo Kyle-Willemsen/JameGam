@@ -20,13 +20,16 @@ public class PlayerMovement : MonoBehaviour
     public float currentSpawnCounter;
 
     public float totalCounter;
-    public TextMeshProUGUI stepCounter;
+    private TextMeshProUGUI stepCounter;
+
+    EnemyStats enemyStats;
 
     private void Start()
     {
+        stepCounter = GameObject.Find("remainingSteps").GetComponent<TextMeshProUGUI>();
         manager = FindObjectOfType<GameMan>();
         movePoint.parent = null;
-
+        enemyStats = FindObjectOfType<EnemyStats>();
         currentSpawnCounter = enemySpawnCounter;
     }
 
@@ -48,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
                         getAttacked = true;
                         currentSpawnCounter--;
                         totalCounter--;
+                        enemyStats.move = true;
                         foreach (EnemyMovement i in manager.enemyMovements)
                         {
                             i.playerHasMoved = true;
@@ -66,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
                         getAttacked = true;
                         currentSpawnCounter--;
                         totalCounter--;
+                        enemyStats.move = true;
                         foreach (EnemyMovement i in manager.enemyMovements)
                         {
                             i.playerHasMoved = true;
@@ -86,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
         if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 0f && Mathf.Abs(Input.GetAxisRaw("Vertical")) == 0f)
         {
             canMove = true;
+            getAttacked = false;
         }
 
     }

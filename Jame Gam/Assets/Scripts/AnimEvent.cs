@@ -11,21 +11,29 @@ public class AnimEvent : MonoBehaviour
     public float radius;
 
 
+
     private void Start()
     {
+
         playerMovement = FindObjectOfType<PlayerMovement>();
     }
 
     public void AttackPlayer()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, player);
-        foreach (Collider2D obj in colliders)
-        {
-            if (obj.GetComponent<PlayerStats>())
+
+        
+            //Debug.Log("AttackPlayer");
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, player);
+            foreach (Collider2D obj in colliders)
             {
-                obj.GetComponent<PlayerStats>().GetHit();
+                if (obj.GetComponent<PlayerStats>())
+                {
+                    // Debug.Log("PlayerHit");
+                    obj.GetComponent<PlayerStats>().GetHit();
+                }
             }
-        }
+        
+        
 
     }
 
@@ -37,7 +45,9 @@ public class AnimEvent : MonoBehaviour
     public void AnimEnded()
     {
         anim.SetBool("Attack", false);
-        enemyMovement.canMove = true;
-        playerMovement.getAttacked = false;
+        anim.SetBool("Charge", false);
+        //enemyMovement.canMove = true;
+        //playerMovement.getAttacked = false;
+        //Debug.Log("Anim Ended");
     }
 }

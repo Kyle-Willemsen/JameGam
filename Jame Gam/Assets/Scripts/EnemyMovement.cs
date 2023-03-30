@@ -5,12 +5,13 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     PlayerMovement playerMovement;
+    public EnemyStats enemyStats;
     public int movementDirection;
     public float enemySpeed;
     public Transform movePoint;
     public LayerMask barricade;
 
-    public GameObject playerTarget;
+    private GameObject playerTarget;
     public bool hasMoved = true;
     public bool canMove;
     public float waitMoves;
@@ -19,7 +20,7 @@ public class EnemyMovement : MonoBehaviour
     Vector3 direction;
     int timesTested;
 
-    private bool stunned;
+
 
 
     private void Start()
@@ -33,6 +34,10 @@ public class EnemyMovement : MonoBehaviour
 
     public void Update()
     {
+        if (enemyStats.stunned == true)
+        {
+            canMove = false;
+        }
         direction = (playerTarget.transform.position - transform.position);
         if (hasMoved)
         {
@@ -134,24 +139,8 @@ public class EnemyMovement : MonoBehaviour
             }
 
         }
-        if (stunned)
-        {
-            canMove = false;
-            if (playerMovement.canMove == false)
-            {
-                waitMoves--;
-                if (waitMoves <= 0)
-                {
-                    canMove = true;
-                    waitMoves = 3;
-                }
-            }
-        }
+        
     }
 
-    public void StopEnemy()
-    {
-        Debug.Log("Stunned");
-        stunned = true;
-    }
+
 }

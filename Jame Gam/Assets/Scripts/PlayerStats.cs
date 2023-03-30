@@ -13,10 +13,11 @@ public class PlayerStats : MonoBehaviour
     //public List<GameObject> lives = new List<GameObject>();
     private GameObject loseScreen;
     GameMan manager;
-    public TextMeshProUGUI liveLives;
+    private TextMeshProUGUI liveLives;
 
     private void Start()
     {
+        liveLives = GameObject.Find("remaining").GetComponent<TextMeshProUGUI>();
         manager = GameObject.Find("GameManager").GetComponent<GameMan>();
         loseScreen = manager.loseScreen;
         anim = GetComponent<Animator>();

@@ -27,6 +27,7 @@ public class PlaceInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void OnPointerEnter(PointerEventData eventData)
     {
         gameObject.transform.localScale = highlightedSize;
+        //Debug.Log("Hover");
     }
 
     public void OnPointerExit(PointerEventData eventData)

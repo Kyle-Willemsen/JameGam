@@ -29,7 +29,7 @@ public class GroundSlam : MonoBehaviour
             Slam();
             //playerMovement.canMove = false;
             anim.SetBool("Slam", true);
-            cardSelect.DeckHand.RemoveAt(0);
+            //cardSelect.DeckHand.RemoveAt(0);
             Destroy(this.gameObject);
         }
     }
