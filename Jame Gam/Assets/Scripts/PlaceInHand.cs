@@ -19,9 +19,9 @@ public class PlaceInHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         audioManager = FindObjectOfType<AudioManager>();
         selected = false;
 
-        originalSize = new Vector2(100, 100);
-        highlightedSize = new Vector2(110, 110f);
-        selectedSize = new Vector2(125f, 125f);
+        originalSize = new Vector2(83, 83);
+        highlightedSize = new Vector2(93, 93);
+        selectedSize = new Vector2(105, 105f);
 
         deckHand = GameObject.Find("DeckHand");
         gameObject.transform.SetParent(deckHand.transform);
